@@ -8,7 +8,7 @@ type ParsedUserId = {
 export function parseUserId(userId: string): ParsedUserId {
     let parts = userId.split('@');
     return {
-        username: parts[0],
-        hostname: parts[1]
+        username: parts[1],
+        hostname: parts[2]
     };
 }

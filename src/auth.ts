@@ -12,6 +12,7 @@ export function login(
     success: Function, 
     error: Function)
 {
+    console.log(`Sending login request to ${hostname}`)
     axios.post(`https://${hostname}/login`, 
     {
         "username": username, 
