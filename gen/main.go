@@ -19,9 +19,6 @@ func main() {
 
 	err := filepath.Walk(templateDir,
 		func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
 			if strings.HasSuffix(path, ".stage.html") || strings.HasSuffix(path, ".stage.tmpl") {
 				base := strings.TrimSuffix(path, ".stage.html")
 				base = strings.TrimSuffix(base, ".stage.tmpl")
@@ -29,6 +26,7 @@ func main() {
 
 				distPath := filepath.Join("dist", fmt.Sprintf("%s.html", base))
 				os.MkdirAll(filepath.Dir(distPath), 0o755)
+				os.Remove(distPath)
 				f, err := os.OpenFile(distPath, os.O_RDWR|os.O_CREATE, 0644)
 				if err != nil {
 					panic(err)
