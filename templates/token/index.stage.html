@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Lyrix
+    </h1>
+    <h2 class="subtitle">
+      Paste this authentication token in your required application.
+    </h2>
+    
+    <pre><code id="authCode">loading auth token...</code></pre>
+    <br>
+    <button
+        id="copyToClipboardButton" onclick="onClickAnnounce()"
+        data-clipboard-target="#authCode"
+        class="button">Copy to clipboard
+    </button>
+    
+
+  </div>
+</section>
+
+<script src="https://zapx.now.sh/js/clipboard.js"></script>
+<script>
+function onClickAnnounce() {
+    new ClipboardJS('#copyToClipboardButton').text('Copied!')
+}
+</script>
+
+{% endblock %}

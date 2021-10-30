@@ -2,15 +2,21 @@ const axios = require('axios').default;
 
 
 export function isLoggedIn(): boolean {
-    for (const key in ["token", "username", "hostname"]) {
-        if (!localStorage.getItem(key)) {
+    let lKeys = ["token", "username", "hostname"] 
+    for (const key in lKeys) {
+        if (localStorage.getItem(lKeys[key]) === null) {
             return false;
         }
-        if (localStorage.getItem(key) === "null") {
+        // TODO, what if the person's name is null?
+        if (localStorage.getItem(lKeys[key]) === "null") {
             return false;
         }
     }
     return true;
+}
+
+export function getToken(): string {
+    return "/start " + localStorage.getItem("username") + ":" + localStorage.getItem("hostname") + ":" + localStorage.getItem("token");
 }
 
 export function login(

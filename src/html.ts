@@ -1,7 +1,6 @@
 
-import { login, register } from './auth'
+import { getToken, login, register, isLoggedIn } from './auth'
 import { parseUserId } from './utils'
-import { isLoggedIn } from './auth'
 
 function registerHtmlCallback() {
     let userId = (<HTMLInputElement>document.getElementById('userId')).value
@@ -46,8 +45,12 @@ function registerLoginButtonCallback() {
 
 function onDefaultPageLoadCallback() {
     if (!isLoggedIn()) {
-        window.location.replace("/login");
+        window.location.replace(`/login/?next=${window.location.pathname}`);
     }
+}
+
+function onTokenPageLoadCallback() {
+    document.getElementById('authCode').textContent = getToken()
 }
 
 export function registerAllCallbacks() {
@@ -58,7 +61,10 @@ export function registerAllCallbacks() {
         case "/login/":
             registerLoginButtonCallback()
             break;
-        case "/":
+        case "/token/":
+            onTokenPageLoadCallback()
+
+        default:
             onDefaultPageLoadCallback()
             break;
     }
