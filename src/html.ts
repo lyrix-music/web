@@ -111,6 +111,7 @@ function loadLyrics() {
     UserPlayerLocalLyrics(function(res :string) {
         console.log(res)
         lyrics.textContent = res    
+        songChanged = false
         
     }, function() {
         lyrics.textContent = "Couldn't fetch the lyrics."
@@ -132,8 +133,8 @@ export function registerAllCallbacks() {
         case "/":
             onDefaultPageLoadCallback()
             navBarSetup()
-            setInterval(loadLyrics, 5000)
             setInterval(loadSong, 2500)
+            setInterval(loadLyrics, 5000)
 
             break
 
