@@ -20,43 +20,46 @@ function getClient(): AxiosInstance {
 
 
 // GET /user/telegram_id
-function UserTelegramId(success: Function, error: Function) {
+export function UserTelegramId(success: Function, error: Function) {
     getClient().get("/user/telegram_id").then(response => {
         success(response.data);
     }).catch(e => { error(e)});
 }
 
 // GET /user/player/local/current_song
-function UserPlayerLocalCurrentSong(success: Function, error: Function) {
+export function UserPlayerLocalCurrentSong(success: Function, error: Function) {
     getClient().get("/user/player/local/current_song").then(response => {
         success(response.data);
     }).catch(e => { error(e)});
 }
 
 // GET /user/player/local/current_song/similar
-function UserPlayerLocalSimilarSongs(success: Function, error: Function) {
+export function UserPlayerLocalSimilarSongs(success: Function, error: Function) {
     getClient().get("/user/player/local/current_song/similar").then(response => {
         success(response.data);
     }).catch(e => { error(e)});
 }
 
 // GET /user/player/local/current_song/love
-function UserPlayerLocalLoveSongs(success: Function, error: Function) {
+export function UserPlayerLocalLoveSongs(success: Function, error: Function) {
     getClient().get("/user/player/local/current_song/love").then(response => {
         success(response.data);
     }).catch(e => { error(e)});
 }
 
 // GET /user/player/local/current_song/unlove
-function UserPlayerLocalUnloveSongs(success: Function, error: Function) {
+export function UserPlayerLocalUnloveSongs(success: Function, error: Function) {
     getClient().get("/user/player/local/current_song/unlove").then(response => {
         success(response.data);
     }).catch(e => { error(e)});
 }
 
 // GET /user/player/local/current_song/lyrics
-function UserPlayerLocalLyrics(success: Function, error: Function) {
+export function UserPlayerLocalLyrics(success: Function, error: Function) {
     getClient().get("/user/player/local/current_song/lyrics").then(response => {
+        if (response.data == null) {
+            error("No lyrics found");
+        }
         success(response.data);
     }).catch(e => { error(e)});
 }

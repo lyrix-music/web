@@ -7,3 +7,8 @@
 
     border-radius: 1em;
 }
+
+#lyrics {
+    white-space: pre-line;
+    
+}

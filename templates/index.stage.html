@@ -10,6 +10,7 @@
     <h2 class="subtitle">
       Open source music network
     </h2>
+    {% if desktop %}
     <div id="scrobbleSwitchDiv" class="field">
       <input id="scrobbleSwitch" type="checkbox" name="scrobbleSwitch"
              class="switch is-rounded is-primary requires-auth">
@@ -20,31 +21,14 @@
              class="switch is-rounded is-primary requires-auth">
       <label for="cjkRomanizeSwitch">Romanize</label>
     </div>
+    {% endif %}
     <a href="/similar" class="button is-primary requires-auth mb-3">Similar...</a>
 
-    <p class="lyrics">
-
+    <p id="lyrics">
+      Loading lyrics...
     </p>
 
     <br>
-    <br>
-    <div class="dropdown is-active">
-      <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-          <span id="selected-music-player">Music player</span>
-          <span class="icon is-small">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-        </button>
-      </div>
-      <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-        <div class="dropdown-content">
-          <div class="dropdown-item">
-            <p>Waiting for players 🤔</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 </section>
