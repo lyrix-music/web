@@ -70,6 +70,21 @@ function navBarSetup() {
     }
 }
 
+function spotifyAuthorizeTokenCallback() {
+    let title = document.getElementsByClassName('title').item(0)
+    let subtitle = document.getElementsByClassName('subtitle').item(0)
+    const urlParams = new URLSearchParams(window.location.search);
+    let code = urlParams.get("code")
+    if (code == "") {
+        title.textContent = "🎶 Looks like something went wrong 👀"
+        subtitle.textContent = "Please try again."
+        return
+    }
+    title.textContent = "🎶 Your Lyrix account is connected with Spotify! 🎶"
+    subtitle.textContent = "The spotify token was received, and was successfully updated. Your songs should now be visible over Lyrix ✨"
+    
+}
+
 
 function loadSong() {
     // fetches the current song that the user is listening
@@ -130,6 +145,8 @@ export function registerAllCallbacks() {
             break;
         case "/token/":
             onTokenPageLoadCallback()
+        case "/authorize/spotify/":
+            spotifyAuthorizeTokenCallback()
         case "/":
             onDefaultPageLoadCallback()
             navBarSetup()

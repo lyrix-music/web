@@ -63,3 +63,34 @@ export function UserPlayerLocalLyrics(success: Function, error: Function) {
         success(response.data);
     }).catch(e => { error(e)});
 }
+
+export function ConnectSpotifyToken(
+    token: string,
+    success: Function, 
+    error: Function)
+{
+    getClient().post("/user/player/spotify/token", {
+        "token": token, 
+    }).then(function() {
+        success()
+    }).catch((err: any) => {
+        console.log(`Failed to send login request: ${err}`);
+        error(err)
+    })
+}
+
+export function ConnectLastFmToken(
+    token: string,
+    success: Function, 
+    error: Function)
+{
+    // TODO not implemented yet
+    getClient().post("/user/player/lastfm/token", {
+        "token": token, 
+    }).then(function() {
+        success()
+    }).catch((err: any) => {
+        console.log(`Failed to send login request: ${err}`);
+        error(err)
+    })
+}
