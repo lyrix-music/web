@@ -53,6 +53,14 @@ function onTokenPageLoadCallback() {
     document.getElementById('authCode').textContent = getToken()
 }
 
+function navBarSetup() {
+    let navBar =  <HTMLButtonElement>document.getElementsByClassName('navbar-burger').item(0)
+    navBar.onclick = function() {
+        navBar.classList.toggle('is-active')
+        document.getElementsByClassName('navbar-menu').item(0).classList.toggle('is-active')
+    }
+}
+
 export function registerAllCallbacks() {
     switch (window.location.pathname) {
         case "/register/":
@@ -66,6 +74,7 @@ export function registerAllCallbacks() {
 
         default:
             onDefaultPageLoadCallback()
+            navBarSetup()
             break;
     }
 }
