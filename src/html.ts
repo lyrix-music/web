@@ -85,8 +85,14 @@ function loadSong() {
             songChanged = true
             let title = document.getElementsByClassName('title').item(0)
             let artist = document.getElementsByClassName('subtitle').item(0)
-            title.textContent = res.track 
-            artist.textContent = res.artist
+            if (res.track == "" || res.artist == "") {
+                title.textContent = "Lyrix"
+                artist.textContent = "You are currently not playing any song"
+            } else {
+                title.textContent = res.track 
+                artist.textContent = res.artist
+            }
+            
         }
     
 
