@@ -13,5 +13,13 @@
     "typescript": "^4.4.4",
     "webpack": "^5.58.2",
     "webpack-cli": "^4.9.0"
+  },
+  "scripts": {
+    "build:dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "setup": "wget -nc https://raw.githubusercontent.com/lyrix-music/styles/main/css/lyrix.css -O static/css/lyrix.css && mkdir -p dist && ln -srf ./static ./dist/.",
+    "static": "TEMPLATE_DIR=templates go run ./gen/",
+    "clean": "rm -rf dist && rm -rf static/css/lyrix.css",
+    "serve:dev": "python3 -m http.server 8000"
   }
 }
