@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section">
+  <div class="container has-text-centered">
+    <img src="/static/lyrix-desktop.png" alt="Lyrix logo" style="max-width: 90%">
+
+    <h1 class="title">
+      Lyrix
+    </h1>
+    <p class="subtitle">
+      Login to Lyrix to scrobble your current listening tracks, get suggestions and share your
+      current listening song with your friends!
+    </p>
+    <br>
+    <form id="login" style="max-width: 300px; text-align: left; margin: auto;">
+      <div class="field">
+        <label class="label" for="userId">User ID</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="text" name="username" id="username"
+                 placeholder="@beethoven@greatmusicians.co">
+
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="password">Password</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="password" name="password" id="password"
+                 placeholder="Password">
+        </div>
+      </div>
+      <div class="field has-text-centered is-fullwidth">
+        <div class="control">
+          <button type="submit" id='submitButton' name='submit' class="button is-primary is-fullwidth">Login</button>
+          <a href="/register" id='registerButton' class="button is-primary is-fullwidth is-light">Register</a>
+          <a href="/" class="button is-primary is-light is-fullwidth">Continue without logging in</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

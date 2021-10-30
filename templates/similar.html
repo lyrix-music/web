@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<section class="section">
+	<div class="container">
+		<h1 class="title">
+			Songs you may like
+		</h1>
+		<h2 class="subtitle">
+			similar to your current listening song
+		</h2>
+
+		{% if queue_song_supported %}
+		<a class="button is-loading" id="queue-similar-songs">
+			Loading...
+		</a>
+		{% endif %}
+		<div id="similar-songs-container" class="container">
+
+
+		</div>
+
+	</div>
+</section>
+
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="/s/js/jquery-3.6.0.min.js"></script>
+<script src="/s/js/utils.js"></script>
+<script src="/s/js/similarFetcher.js"></script>
+
+
+{% endblock %}

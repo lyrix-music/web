@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- COPYRIGHT (C) MIT LICENSE -->
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Mobile Responsive compatibility layer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Description" content="Lyrixx Bot Authorization">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>Auth | Lyrix</title>
+   <meta property="og:title" content="Lyrix Authorization" />
+    <meta property="og:url" content="https://lyrix.srev.in" />
+  </head>
+  <body>
+      <body>
+  <section class="section">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        🎶 Hello, you are almost done! 🎵
+      </h1>
+      <p class="subtitle">
+          Copy the following command and message @lyrixxxbot on Telegram,
+          to complete the registration.
+          Do not share this link or code with anyone 🔒😅
+      </p>
+        <br>
+        <pre><code id="authCode">/start {{ auth_token }}</code></pre>
+        <br>
+        <button
+            id="copyToClipboardButton" onclick="onClickAnnounce()"
+            style="margin: 2em"
+            data-clipboard-target="#authCode"
+            class="button">Copy to clipboard
+        </button>
+    </div>
+  </section>
+  <script src="https://zapx.now.sh/js/clipboard.js"></script>
+  <script>
+      function onClickAnnounce() {
+        new ClipboardJS('#copyToClipboardButton').text('Copied!')
+    }
+  </script>
+      </body>
+</html>
