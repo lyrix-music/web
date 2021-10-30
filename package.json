@@ -17,7 +17,8 @@
   "scripts": {
     "build:dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "setup": "wget -nc https://raw.githubusercontent.com/lyrix-music/styles/main/css/lyrix.css -O static/css/lyrix.css && mkdir -p dist && ln -srf ./static ./dist/.",
+    "setup:dev": "wget -nc https://raw.githubusercontent.com/lyrix-music/styles/main/css/lyrix.css -O static/css/lyrix.css && mkdir -p dist && ln -srf ./static ./dist/.",
+    "setup": "wget -nc https://raw.githubusercontent.com/lyrix-music/styles/main/css/lyrix.css -O static/css/lyrix.css && mkdir -p dist && rm -rf ./dist/static && cp -r ./static ./dist/.",
     "static": "TEMPLATE_DIR=templates go run ./gen/",
     "clean": "rm -rf dist && rm -rf static/css/lyrix.css",
     "serve:dev": "python3 -m http.server 8000"
