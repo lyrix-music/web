@@ -7,6 +7,7 @@ Web fronted for Lyrix.
 Lyrix uses babel and a custom web parser. 
 
 ```bash
+yarn install
 yarn run setup:dev  # needs to be done once after clone, or clean
 yarn run static  # needs to be run after changing any of the templates/*.html files 
 yarn run build:dev # to convert *.ts to *.js
