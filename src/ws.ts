@@ -12,6 +12,11 @@ export function ListenSongChanges() {
         let ws = new WebSocket(wsEndpoint)
         ws.onmessage = function (event) {
             let data = JSON.parse(event.data)
+            if (data.track == "" || data.artist == "") {
+                title.textContent = "Lyrix"
+                artist.textContent = "You are currently not playing any song."
+                return
+            }
             title.textContent = data.track
             artist.textContent = data.artist
             lyrics.textContent = data.lyrics
