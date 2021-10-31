@@ -41,6 +41,22 @@
           <a href="/login" id='loginButton' class="button is-primary is-fullwidth is-light">Login</a>
           <a href="/" class="button is-primary is-light is-fullwidth">Continue without logging in</a>
         </div>
+        <!--check if password and confirm password is same-->
+        <script>
+          var password = document.getElementById("password")
+          , confirmPassword = document.getElementById("confirmPassword");
+
+          function validatePassword(){
+            if(password.value != confirmPassword.value) {
+              confirmPassword.setCustomValidity("Passwords Don't Match");
+            } else {
+              confirmPassword.setCustomValidity('');
+            }
+          }
+
+          password.onchange = validatePassword;
+          confirmPassword.onkeyup = validatePassword;
+        </script>
       </div>
     </div>
   </div>
