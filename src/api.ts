@@ -1,4 +1,6 @@
 import axios, { AxiosInstance } from "axios";
+import { WebsocketAuth } from "./types";
+import { detectSchemeFromHostname, ParseJwt } from "./utils";
 
 
 
@@ -10,8 +12,9 @@ function getClient(): AxiosInstance {
         // ask the user to login once again
         window.location.replace("/login");
     }
+    let scheme = detectSchemeFromHostname(hostname)
     return axios.create({
-        baseURL: `https://${hostname}`,
+        baseURL: `${scheme}://${hostname}`,
         headers: {
             "Authorization": `Bearer ${token}`
         }
@@ -93,4 +96,13 @@ export function ConnectLastFmToken(
         console.log(`Failed to send login request: ${err}`);
         error(err)
     })
+}
+
+export async function GetWebsocketId(): Promise<WebsocketAuth> {
+    const res = await getClient().get("/user/player/local/current_song/ws");
+    let id = (<{id: string}>res.data).id;
+    let token = localStorage.getItem("token");
+    let userId = ParseJwt(token).id
+    let hostname = localStorage.getItem("hostname");
+    return {"id": id, "userId": userId, "hostname": hostname};
 }

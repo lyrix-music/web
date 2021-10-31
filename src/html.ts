@@ -3,6 +3,7 @@ import { getToken, login, register, isLoggedIn } from './auth'
 import { parseUserId } from './utils'
 import { UserPlayerLocalLyrics, UserPlayerLocalCurrentSong } from "./api"
 import { Song } from './types'
+import { ListenSongChanges } from './ws'
 
 let lastPlayedSong: Song = {
     track: "",
@@ -68,6 +69,7 @@ function navBarSetup() {
         navBar.classList.toggle('is-active')
         document.getElementsByClassName('navbar-menu').item(0).classList.toggle('is-active')
     }
+    
 }
 
 function spotifyAuthorizeTokenCallback() {
@@ -150,8 +152,7 @@ export function registerAllCallbacks() {
         case "/":
             onDefaultPageLoadCallback()
             navBarSetup()
-            setInterval(loadSong, 2500)
-            setInterval(loadLyrics, 5000)
+            ListenSongChanges()
 
             break
 
