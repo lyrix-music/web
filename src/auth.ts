@@ -1,3 +1,5 @@
+import { detectSchemeFromHostname } from "./utils";
+
 const axios = require('axios').default;
 
 
@@ -27,7 +29,8 @@ export function login(
     error: Function)
 {
     console.log(`Sending login request to ${hostname}`)
-    axios.post(`https://${hostname}/login`, 
+    let scheme = detectSchemeFromHostname(hostname) 
+    axios.post(`${scheme}://${hostname}/login`, 
     {
         "username": username, 
         "password": password
