@@ -15,7 +15,7 @@ let songChanged: boolean = true
 function registerHtmlCallback() {
     let userId = (<HTMLInputElement>document.getElementById('userId')).value
     let password = (<HTMLInputElement>document.getElementById('password')).value
-    let confirmedPassword = (<HTMLInputElement>document.getElementById('confirmedPassword')).value
+    let confirmedPassword = (<HTMLInputElement>document.getElementById('confirmPassword')).value
     if (password != confirmedPassword) {
         alert('Passwords do not match')
         return
