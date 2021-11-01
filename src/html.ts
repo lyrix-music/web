@@ -1,7 +1,7 @@
 
 import { getToken, login, register, isLoggedIn } from './auth'
 import { parseUserId } from './utils'
-import { UserPlayerLocalLyrics, UserPlayerLocalCurrentSong } from "./api"
+import { UserPlayerLocalLyrics, UserPlayerLocalCurrentSong, ConnectLastFmRedirectUrl } from "./api"
 import { Song } from './types'
 import { ListenSongChanges } from './ws'
 
@@ -61,6 +61,18 @@ function onDefaultPageLoadCallback() {
 
 function onTokenPageLoadCallback() {
     document.getElementById('authCode').textContent = getToken()
+}
+
+function lastfmRedirectButtonEnableCallback() {
+    let lastFmButton = <HTMLButtonElement>document.getElementById('lastfmRedirectButton')
+    lastFmButton.onclick = function() {
+        lastFmButton.classList.toggle('is-loading');
+        ConnectLastFmRedirectUrl(function(res: {redirect: string}) {
+            window.location.replace(res.redirect)
+        }, function() {
+            lastFmButton.textContent = "Couldn't get Last.Fm redirect URL. Maybe your homeserver doesn't support Last.fm"
+        })
+    }
 }
 
 function navBarSetup() {
@@ -145,16 +157,18 @@ export function registerAllCallbacks() {
         case "/login/":
             registerLoginButtonCallback()
             break;
-        case "/token/":
-            onTokenPageLoadCallback()
-        case "/authorize/spotify/":
-            spotifyAuthorizeTokenCallback()
         case "/":
             onDefaultPageLoadCallback()
             navBarSetup()
             ListenSongChanges()
-
             break
+        case "/authorize/lastfm/":
+            lastfmRedirectButtonEnableCallback()
+        case "/token/":
+            onTokenPageLoadCallback()
+        case "/authorize/spotify/":
+            spotifyAuthorizeTokenCallback()
+        
 
         default:
             onDefaultPageLoadCallback()

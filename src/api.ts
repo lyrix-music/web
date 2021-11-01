@@ -82,6 +82,20 @@ export function ConnectSpotifyToken(
     })
 }
 
+export function ConnectLastFmRedirectUrl(
+    success: Function, 
+    error: Function)
+{
+    // TODO not implemented yet
+    getClient().get("/connect/lastfm").then(function(res) {
+        success(res.data)
+    }).catch((err: any) => {
+        console.log(`Failed to send login request: ${err}`);
+        error(err)
+    })
+}
+
+
 export function ConnectLastFmToken(
     token: string,
     success: Function, 
