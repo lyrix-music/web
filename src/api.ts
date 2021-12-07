@@ -87,7 +87,7 @@ export function ConnectLastFmToken(
     error: Function)
 {
     // TODO not implemented yet
-    getClient().get("/user/player/lastfm/token").then(function(res) {
+    getClient().get("/connect/lastfm").then(function(res) {
         success(res.data)
     }).catch((err: any) => {
         console.log(`Failed to send login request: ${err}`);
