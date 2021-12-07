@@ -1,7 +1,7 @@
 
 import { getToken, login, register, isLoggedIn } from './auth'
 import { parseUserId } from './utils'
-import { UserPlayerLocalLyrics, UserPlayerLocalCurrentSong } from "./api"
+import { UserPlayerLocalLyrics, UserPlayerLocalCurrentSong, ConnectLastFmToken } from "./api"
 import { Song } from './types'
 import { ListenSongChanges } from './ws'
 
@@ -87,6 +87,23 @@ function spotifyAuthorizeTokenCallback() {
     
 }
 
+function lastFMAuthorizeTokenCallback() {
+    let title = document.getElementsByClassName('title').item(0)
+    let subtitle = document.getElementsByClassName('subtitle').item(0)
+    let button: HTMLLinkElement = <HTMLLinkElement>document.getElementById('authorize')
+
+    title.textContent = "🎶 Click on the button below to Connect to Last.fm! 🎶"
+    subtitle.textContent = "The lastFM authorization was received, and was successfully updated. Your songs should now be visible over Lyrix ✨"
+    ConnectLastFmToken(function(res: {redirect: string}) {
+        button.textContent = "Connect to Last.fm"
+        button.href = res.redirect
+    }, function() {
+        console.log("Couldn't connect to last.fm")
+        button.textContent = "Couldn't connect to Last.fm"
+    })
+    
+}
+
 
 function loadSong() {
     // fetches the current song that the user is listening
@@ -147,8 +164,13 @@ export function registerAllCallbacks() {
             break;
         case "/token/":
             onTokenPageLoadCallback()
+            break;
         case "/authorize/spotify/":
             spotifyAuthorizeTokenCallback()
+            break;
+        case "/authorize/lastfm/":
+            lastFMAuthorizeTokenCallback()
+            break;
         case "/":
             onDefaultPageLoadCallback()
             navBarSetup()

@@ -1,4 +1,8 @@
 
+export type LastFmRedirect = {
+    redirect: string;
+}
+
 export type Song = {
     track: string;
     artist: string;

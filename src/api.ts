@@ -83,15 +83,12 @@ export function ConnectSpotifyToken(
 }
 
 export function ConnectLastFmToken(
-    token: string,
     success: Function, 
     error: Function)
 {
     // TODO not implemented yet
-    getClient().post("/user/player/lastfm/token", {
-        "token": token, 
-    }).then(function() {
-        success()
+    getClient().get("/user/player/lastfm/token").then(function(res) {
+        success(res.data)
     }).catch((err: any) => {
         console.log(`Failed to send login request: ${err}`);
         error(err)
